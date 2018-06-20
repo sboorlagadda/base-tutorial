@@ -14,7 +14,7 @@ process.on('unhandledRejection', (reason, p) => {
     const passphrase = 'some passphrase';
     
     //Initialize Base
-    const base = new Base("https://base-node-staging.herokuapp.com", 'localhost', '', '');
+    const base = new Base("https://base2-bitclva-com.herokuapp.com", 'localhost', '', '');
     base.changeStrategy('POSTGRES');
     
     //Create a KeyPair
