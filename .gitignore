@@ -59,3 +59,8 @@ typings/
 
 # next.js build output
 .next
+
+# other base-tutorial excludes
+/scratch/
+/package-lock.json
+dist/
