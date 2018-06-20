@@ -8,6 +8,7 @@
     },
     "dependencies": {
         "ajv": "^6.5.1",
+        "babel-polyfill": "^6.26.0",
         "bitcore-ecies": "^1.0.3",
         "bitcore-lib": "^0.15.0",
         "bitcore-message": "^1.0.4",
