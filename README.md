@@ -28,7 +28,7 @@ The application lets user to choose a passphrase to create his private & public 
     }
     ```
 
-1. Save & Retrieve your data
+1. Save & Read your data
     ```
     //Save
     let data = new Map();
