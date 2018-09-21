@@ -1,6 +1,7 @@
 'use strict';
 
-import Base from "./lib/Bitclave-Base";
+import Base from "@bitclave/base-client-js";
+import { CompareAction, Offer } from "@bitclave/base-client-js";
 
 //required for babel to polyfill regeneratorRuntime
 require("babel-polyfill");
@@ -36,23 +37,23 @@ process.on('unhandledRejection', (reason, p) => {
         console.log("Account created:" + JSON.stringify(account));
     }
 
-    let data = new Map();
-    data.set("firstname", "John");
-    data.set("lastname", "Doe");
-    data.set("email", "john.doe@gmail.com");
-    data.set("city", "NewYork");
+    let searchRequestTags = new Map();
+    searchRequestTags.set("type", "car");
 
-    // Save encrypted data to Base
-    let encryptedData = await base.profileManager.updateData(data);
-    console.log("\nUser data is encrypted and saved to Base.");
-    for (var [key, value] of encryptedData.entries()) {
-        console.log("Key:" + key + ", Encrypted Value:" + value);
-    }
+    let compareMap = new Map();
+    compareMap.set("age", "25");
 
-    // Read saved data and decrypt
-    let decryptedData = await base.profileManager.getData();
-    console.log("\nUser data is retrieved from Base and decrypted.");
-    for (var [key, value] of decryptedData.entries()) {
-        console.log("Key:" + key + ", Decrypted Value:" + value);
+    let rulesMap = new Map();
+    rulesMap.set("age", CompareAction.EQUALLY.toString());
+    
+    let offer = new Offer('somew description', 'some title', 'some imageUrl', 1,
+            searchRequestTags, compareMap, rulesMap);
+
+    try {
+        //let savedSearchRequest = await baseAlice.searchManager.createRequest(new SearchRequest(searchRequestTags));
+        let savedOffer = await base.offerManager.saveOffer(offer);
+    } catch(e) {
+        console.log("Something wrong in before", e);
+        assert.fail("Something wrong in before");
     }
 })();
